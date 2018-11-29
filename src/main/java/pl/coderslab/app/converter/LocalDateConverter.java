@@ -1,0 +1,22 @@
+package pl.coderslab.app.converter;
+
+import org.springframework.core.convert.converter.Converter;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class LocalDateConverter implements Converter<String, LocalDate> {
+
+    private final DateTimeFormatter formatter;
+
+    public LocalDateConverter(String dateFormat){
+        this.formatter = DateTimeFormatter.ofPattern(dateFormat);
+    }
+    @Override
+    public LocalDate convert(String s) {
+        if(s == null || s.isEmpty()){
+            return null;
+        }
+        return LocalDate.parse(s, formatter);
+    }
+}
