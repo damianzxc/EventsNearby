@@ -17,7 +17,9 @@ import javax.validation.Valid;
 @Controller
 public class LoginController {
 
+
     public static final String LOGGED_USER_KEY = "logged-key";
+
 
     @Autowired
     LoginService loginService;

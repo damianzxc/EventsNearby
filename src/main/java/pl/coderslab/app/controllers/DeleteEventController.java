@@ -12,8 +12,10 @@ import pl.coderslab.app.services.EventService;
 @Controller
 public class DeleteEventController {
 
+
     @Autowired
     EventService eventService;
+
 
     @GetMapping("/delete/{id:[0-9]+}")
     public String deleteEvent(@SessionAttribute(value = LoginController.LOGGED_USER_KEY, required = false) UserDTO loggedUser,

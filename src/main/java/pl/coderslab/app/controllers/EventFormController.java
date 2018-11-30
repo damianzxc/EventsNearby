@@ -24,6 +24,7 @@ import java.util.List;
 @Controller
 public class EventFormController {
 
+
     @Autowired
     private EventService eventService;
 
@@ -63,7 +64,6 @@ public class EventFormController {
             bindingResult.rejectValue("startDate", "", "Niepoprawne daty ");
             return "event-add-photo";
         }
-
         saveEventWithPhoto(event, loggedUser, file, request);
         return "redirect:/events";
     }

@@ -1,5 +1,6 @@
 package pl.coderslab.app.services;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.stereotype.Service;
 import pl.coderslab.app.dtos.FormDataWithFile;
 
@@ -15,13 +16,14 @@ public class PhotoLoadService {
 
 
     public String uploadFile(FormDataWithFile formDataWithFile, HttpServletRequest request, Long loggedUserId) {
+
+        String generatedString = RandomStringUtils.random(10, true, false);
         String fileName = formDataWithFile.getFile().getOriginalFilename();
-        String webFilePathString = "photos/"+loggedUserId+"/" +fileName;
-        String rootPathString = request.getServletContext().getRealPath("")+"photos/"+loggedUserId+"/";
+        String webFilePathString = "photos/"+generatedString+fileName;
+        String rootPathString = request.getServletContext().getRealPath("")+"photos/";
 
         Path rootPath = Paths.get(rootPathString);
-        Path target = Paths.get(rootPathString+fileName);
-
+        Path target = Paths.get(rootPathString+generatedString+fileName);
 
         try{
 
@@ -31,12 +33,10 @@ public class PhotoLoadService {
 
             Files.copy(formDataWithFile.getFile().getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
 
-        }catch(IOException e){
+        }
+        catch(IOException e){
             e.printStackTrace();
         }
-
-
         return webFilePathString;
     }
-
 }

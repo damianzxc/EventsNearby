@@ -13,11 +13,14 @@ public class RegistrationFormDTO {
     @NotNull(message = "Login musi zostać podany")
     @Size(min = 3, max = 12, message = "Login musi zawierać od 3 do 12 znaków")
     private String login;
+
     @Email(message = "Niepoprawny format email")
     private String email;
+
     @NotBlank(message = "Hasło musi zostać podane")
     @NotNull(message = "Hasło musi zostać podane")
     private String password;
+
     @NotBlank(message = "Powtórzone hasło musi być podane")
     @NotNull(message = "Powtórzone hasło musi być podane")
     private String confirmedPassword;

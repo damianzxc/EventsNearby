@@ -7,8 +7,10 @@ import pl.coderslab.app.repositories.CategoryRepository;
 
 public class CategoryConverter implements Converter<String, Category> {
 
+
     @Autowired
     private CategoryRepository categoryRepository;
+
 
     @Override
     public Category convert(String s) {

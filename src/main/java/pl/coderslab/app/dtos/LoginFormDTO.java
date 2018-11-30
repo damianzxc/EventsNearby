@@ -6,9 +6,11 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 public class LoginFormDTO {
+
     @NotNull(message = "Należy podać login")
     @NotBlank(message = "Należy podać login")
     private String login;
+
     @NotNull(message = "Należy podać hasło")
     @NotBlank(message = "Należy podać hasło")
     private String password;

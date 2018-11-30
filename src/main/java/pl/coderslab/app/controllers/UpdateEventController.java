@@ -18,11 +18,13 @@ import java.util.List;
 @Controller
 public class UpdateEventController {
 
+
     @Autowired
     EventService eventService;
 
     @Autowired
     CategoryService categoryService;
+
 
     @ModelAttribute("categoryList")
     public List<Category> categories(){
@@ -42,7 +44,4 @@ public class UpdateEventController {
         }
         return "redirect:/login";
     }
-
-
-
 }

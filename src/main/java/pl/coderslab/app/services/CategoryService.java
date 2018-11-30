@@ -12,8 +12,10 @@ import java.util.List;
 @Transactional
 public class CategoryService {
 
+
     @Autowired
     CategoryRepository categoryRepository;
+
 
     public List<Category> getAll(){
         List<Category> categories = categoryRepository.findAll();

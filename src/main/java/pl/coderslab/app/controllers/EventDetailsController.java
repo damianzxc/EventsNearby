@@ -11,8 +11,10 @@ import pl.coderslab.app.services.EventService;
 @Controller
 public class EventDetailsController {
 
+
     @Autowired
     EventService eventService;
+
 
     @GetMapping("/details/{id}")
     public String getEventDetails(@PathVariable Long id, Model model){

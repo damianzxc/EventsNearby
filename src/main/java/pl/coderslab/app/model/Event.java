@@ -3,7 +3,6 @@ package pl.coderslab.app.model;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -16,7 +15,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //@NotBlank @NotNull
+    @NotBlank @NotNull
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -24,13 +23,15 @@ public class Event {
     private String city;
     @NotBlank @NotNull @Size(min = 5, max = 50)
     private String street;
-    @NotBlank @NotNull @Size(min = 50, max = 500)
+    @NotBlank @NotNull @Size(min = 50)
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String photoURL;
     @ManyToOne
     private Category category;
     @ManyToOne
     private User user;
+
 
     @Override
     public String toString() {

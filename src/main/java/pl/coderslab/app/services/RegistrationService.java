@@ -1,5 +1,6 @@
 package pl.coderslab.app.services;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,8 +11,11 @@ import pl.coderslab.app.repositories.UserRepository;
 @Service
 @Transactional
 public class RegistrationService {
+
+
     @Autowired
     UserRepository userRepository;
+
 
     public boolean checkLogin(String login) {
         if(login == null || login.isEmpty()){

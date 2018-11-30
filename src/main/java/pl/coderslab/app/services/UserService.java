@@ -10,8 +10,10 @@ import pl.coderslab.app.repositories.UserRepository;
 @Transactional
 public class UserService {
 
+
     @Autowired
     UserRepository userRepository;
+
 
     public User findById(Long id){
         User user = userRepository.findOne(id);

@@ -27,12 +27,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.validation.Validator;
 import java.util.Locale;
 
-@EnableJpaRepositories(basePackages = "pl.coderslab.app")
 @Configuration
 @ComponentScan(basePackages = "pl.coderslab.app")
 @EnableWebMvc
-@EnableTransactionManagement
 public class AppConfig extends WebMvcConfigurerAdapter {
+
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -41,7 +40,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-//        super.configureContentNegotiation(configurer);
         configurer.defaultContentType(MediaType.TEXT_HTML);
     }
 
@@ -52,20 +50,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-    //must be this method name or maybe annotation @Bean(name="entityManagerFactory") can work
-    @Bean
-    public LocalEntityManagerFactoryBean entityManagerFactory() {
-        LocalEntityManagerFactoryBean emf = new LocalEntityManagerFactoryBean();
-        emf.setPersistenceUnitName("someUnitPU");
-        return emf;
-    }
-
-    @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
-        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager(emf);
-        return jpaTransactionManager;
-    }
-
 
     @Bean
     public Validator validator(){
@@ -99,8 +83,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(100000);
+        multipartResolver.setMaxUploadSize(1000000);
         return multipartResolver;
     }
-
 }

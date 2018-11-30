@@ -16,8 +16,11 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
+
+
     @Autowired
     RegistrationService registrationService;
+
 
     @GetMapping
     public String prepareRegistrationForm(Model model){

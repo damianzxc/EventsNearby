@@ -12,6 +12,7 @@ import java.util.List;
 @Controller
 public class EventsListController {
 
+
     @Autowired
     private EventService eventService;
 

@@ -13,6 +13,7 @@ import java.util.List;
 @Transactional
 public class EventService {
 
+
     @Autowired
     private EventRepository eventRepository;
 
@@ -26,8 +27,9 @@ public class EventService {
     }
 
     public List<Event> findAllOrderByEndDate(){
-        List<Event> events = eventRepository.getAllOrderByEndDate();
-        return events;
+        deleteOldEvents(eventRepository.getAllOrderByEndDate());
+        List<Event> actual = eventRepository.getAllOrderByEndDate();
+        return actual;
     }
 
     public Event findOneById(Long id){
@@ -57,6 +59,13 @@ public class EventService {
         return event.getEndDate().isAfter(event.getStartDate());
     }
 
-
-
+    private void deleteOldEvents(List<Event> events){
+        LocalDate today = LocalDate.now();
+        if(events.size() >= 1)
+        for(Event event: events){
+            if(event.getEndDate().isBefore(today)){
+                eventRepository.delete(event);
+            }
+        }
+    }
 }
