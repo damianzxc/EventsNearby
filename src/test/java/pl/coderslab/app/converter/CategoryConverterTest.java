@@ -22,11 +22,11 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+//@ContextConfiguration
 //@ContextConfiguration(classes = {DBConfig.class, AppConfig.class})
-//@ContextConfiguration(loader = AnnotationConfigWebContextLoader.class, classes = {DBConfig.class})
+@ContextConfiguration(loader = AnnotationConfigWebContextLoader.class, classes = {AppConfig.class, DBConfig.class})
 @Transactional
-//@WebAppConfiguration
+@WebAppConfiguration
 public class CategoryConverterTest {
 
     @Autowired
