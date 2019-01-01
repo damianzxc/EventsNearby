@@ -32,17 +32,18 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute("loginFormData") @Valid LoginFormDTO form,
-                        BindingResult bindingResult, HttpSession session){
+                        BindingResult bindingResult, HttpSession session) {
+
         if(bindingResult.hasErrors()){
-            return "/login";
-        }
-        boolean validCredentials = loginService.checkCredentials(form.getLogin(), form.getPassword());
-        if(!validCredentials){
-            bindingResult.rejectValue("login", "", "Login i/lub hasło niepoprawne");
             return "/login";
         }
 
         UserDTO user = loginService.login(form.getLogin(), form.getPassword());
+        if(user == null) {
+            bindingResult.rejectValue("login", "", "Login lub hasło niepoprawne");
+            return "/login";
+        }
+
         session.setAttribute(LOGGED_USER_KEY, user);
         return "redirect:/create";
     }

@@ -16,17 +16,6 @@ public class LoginService {
     UserRepository userRepository;
 
 
-    public boolean checkCredentials(String login, String password) {
-        if(login == null || login.isEmpty()){
-            return false;
-        }
-        if(password == null || password.isEmpty()){
-            return false;
-        }
-        User user = userRepository.findByLoginAndPassword(login, password);
-        return user != null;
-    }
-
     public UserDTO login(String login, String password) {
         if(login == null || login.isEmpty()){
             return null;
@@ -34,11 +23,14 @@ public class LoginService {
         if(password == null || password.isEmpty()){
             return null;
         }
-        User user = userRepository.findByLoginAndPassword(login, password);
-
+        User user = userRepository.findByLogin(login);
+        if(!BCrypt.checkpw(password, user.getPassword())) {
+            return null;
+        }
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
-        userDTO.setLogin(user.getLogin());
+        //userDTO.setLogin(user.getLogin());
+        userDTO.setLogin(login);
         userDTO.setEmail(user.getEmail());
         return userDTO;
     }

@@ -2,6 +2,7 @@ package pl.coderslab.app.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,12 +15,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    @NotBlank
-    private String login;
+
     @NotNull @NotBlank
+    @Column(unique = true, nullable = false)
+    private String login;
+
+    @NotNull @NotBlank
+    @Column(nullable = false)
     private String password;
+
     @NotNull @NotBlank @Email
+    @Column(unique = true, nullable = false)
     private String email;
 
     @Override
@@ -38,7 +44,6 @@ public class User {
         User user = (User) o;
         return Objects.equals(id, user.id) &&
                 Objects.equals(login, user.login) &&
-                Objects.equals(password, user.password) &&
                 Objects.equals(email, user.email);
     }
 
@@ -68,7 +73,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public String getEmail() {

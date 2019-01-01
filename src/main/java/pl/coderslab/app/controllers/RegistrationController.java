@@ -41,6 +41,7 @@ public class RegistrationController {
         boolean isLoginUnique = registrationService.checkLogin(formDTO.getLogin());
         if(!isLoginUnique){
             bindingResult.rejectValue("login", "", "Login już zajęty");
+            return "/registration";
         }
         boolean isEmailUnique = registrationService.checkEmail(formDTO.getEmail());
         if(!isEmailUnique){
