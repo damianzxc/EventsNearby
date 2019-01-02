@@ -28,6 +28,10 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @NotNull @NotBlank
+    private String activationCode;
+    private Integer active = 0;
+
     @Override
     public String toString() {
         return "User{" +
@@ -82,5 +86,21 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 }

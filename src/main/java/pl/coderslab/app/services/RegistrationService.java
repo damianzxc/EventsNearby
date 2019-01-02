@@ -38,6 +38,7 @@ public class RegistrationService {
         user.setLogin(formDTO.getLogin());
         user.setEmail(formDTO.getEmail());
         user.setPassword(formDTO.getPassword());
+        user.setActivationCode("1234");
         userRepository.save(user);
     }
 }

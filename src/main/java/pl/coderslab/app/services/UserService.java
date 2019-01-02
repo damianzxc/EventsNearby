@@ -19,4 +19,9 @@ public class UserService {
         User user = userRepository.findOne(id);
         return user;
     }
+
+    public void updateUserActivation(String code) {
+        userRepository.updateActivation(code);
+
+    }
 }
