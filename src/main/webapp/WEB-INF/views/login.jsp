@@ -22,7 +22,7 @@
             <td><form:input path="password"/><form:errors path="password"/> </td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Zarejestruj"></td>
+            <td colspan="2"><input type="submit" value="Zaloguj"></td>
         </tr>
     </form:form>
     </tbody>

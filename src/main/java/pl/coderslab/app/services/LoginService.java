@@ -23,13 +23,12 @@ public class LoginService {
         if(password == null || password.isEmpty()){
             return null;
         }
-        User user = userRepository.findByLogin(login);
+        User user = userRepository.findActiveUserByLogin(login);
         if(!BCrypt.checkpw(password, user.getPassword())) {
             return null;
         }
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
-        //userDTO.setLogin(user.getLogin());
         userDTO.setLogin(login);
         userDTO.setEmail(user.getEmail());
         return userDTO;

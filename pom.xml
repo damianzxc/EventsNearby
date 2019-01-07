@@ -115,20 +115,11 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- ADDED FOR MAIL SENDING -->
-
     <!-- Spring Context Support -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
       <version>5.1.2.RELEASE</version>
-    </dependency>
-
-    <!-- Java Mail Dependency -->
-    <dependency>
-      <groupId>javax.mail</groupId>
-      <artifactId>javax.mail-api</artifactId>
-      <version>1.6.2</version>
     </dependency>
 
     <!-- Java Mail Dependency -->

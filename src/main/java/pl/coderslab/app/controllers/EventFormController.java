@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import pl.coderslab.app.dtos.FormDataWithFile;
 import pl.coderslab.app.dtos.UserDTO;
 import pl.coderslab.app.model.Category;
 import pl.coderslab.app.model.Event;
@@ -71,9 +70,7 @@ public class EventFormController {
     private void saveEventWithPhoto(@Valid @ModelAttribute("eventCreationForm") Event event, @SessionAttribute(value = LoginController.LOGGED_USER_KEY, required = false) UserDTO loggedUser, @Param("image") MultipartFile file, HttpServletRequest request) {
         String photoPath = "";
         if(file != null){
-            FormDataWithFile fd = new FormDataWithFile();
-            fd.setFile(file);
-            photoPath = photoLoadService.uploadFile(fd, request, loggedUser.getId());
+            photoPath = photoLoadService.uploadFile(file, request);
         }
         User user = userService.findById(loggedUser.getId());
         event.setUser(user);

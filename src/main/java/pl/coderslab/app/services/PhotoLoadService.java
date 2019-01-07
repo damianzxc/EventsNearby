@@ -2,7 +2,7 @@ package pl.coderslab.app.services;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.stereotype.Service;
-import pl.coderslab.app.dtos.FormDataWithFile;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -15,10 +15,10 @@ import java.nio.file.StandardCopyOption;
 public class PhotoLoadService {
 
 
-    public String uploadFile(FormDataWithFile formDataWithFile, HttpServletRequest request, Long loggedUserId) {
+    public String uploadFile(MultipartFile file, HttpServletRequest request) {
 
         String generatedString = RandomStringUtils.random(10, true, false);
-        String fileName = formDataWithFile.getFile().getOriginalFilename();
+        String fileName = file.getOriginalFilename();
         String webFilePathString = "photos/"+generatedString+fileName;
         String rootPathString = request.getServletContext().getRealPath("")+"photos/";
 
@@ -31,7 +31,7 @@ public class PhotoLoadService {
                 Files.createDirectories(rootPath);
             }
 
-            Files.copy(formDataWithFile.getFile().getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
 
         }
         catch(IOException e){

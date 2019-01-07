@@ -12,6 +12,6 @@
 </head>
 <body>
 <h1>Udało Ci się poprawnie zarejestrować</h1>
-<div><a href="/">Przejdź do strony głównej</a> </div>
+<h3>Sprawdź swojego maila aby aktywować konto</h3>
 </body>
 </html>

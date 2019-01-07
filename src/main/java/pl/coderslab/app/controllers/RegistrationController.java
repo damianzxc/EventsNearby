@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.app.dtos.RegistrationFormDTO;
+import pl.coderslab.app.services.EmailSenderService;
 import pl.coderslab.app.services.RegistrationService;
 
 import javax.validation.Valid;
@@ -20,6 +21,9 @@ public class RegistrationController {
 
     @Autowired
     RegistrationService registrationService;
+
+    @Autowired
+    EmailSenderService emailSender;
 
 
     @GetMapping

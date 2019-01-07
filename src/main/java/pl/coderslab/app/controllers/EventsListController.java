@@ -16,11 +16,11 @@ public class EventsListController {
     @Autowired
     private EventService eventService;
 
+
     @GetMapping("/{categoryId}")
     public String getEventsByCategory(@PathVariable Long categoryId, Model model){
         List<Event> events = eventService.findEventsByCategoryId(categoryId);
         model.addAttribute("eventsByCategory", events);
         return "events-by-category";
     }
-
 }

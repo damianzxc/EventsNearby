@@ -25,29 +25,6 @@ public class RegistrationFormDTO {
     @NotNull(message = "Powtórzone hasło musi być podane")
     private String confirmedPassword;
 
-    @Override
-    public String toString() {
-        return "RegistrationFormDTO{" +
-                "login='" + login + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RegistrationFormDTO that = (RegistrationFormDTO) o;
-        return Objects.equals(login, that.login) &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(password, that.password) &&
-                Objects.equals(confirmedPassword, that.confirmedPassword);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(login, email, password, confirmedPassword);
-    }
 
     public String getLogin() {
         return login;

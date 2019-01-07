@@ -1,42 +1,38 @@
-package pl.coderslab.app.emailSender;
+package pl.coderslab.app.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Service;
-import pl.coderslab.app.emailSender.EmailSender;
+import org.springframework.stereotype.Component;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-@Service("emailSender")
-public class EmailSenderImpl implements EmailSender {
+@Component
+public class EmailSenderService {
+
 
     @Autowired
     private JavaMailSender mailSender;
 
-    @Override
+
     public void sendEmail(String to, String subject, String content) {
 
         MimeMessage mail = mailSender.createMimeMessage();
-
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mail, true);
             helper.setTo(to);
-            helper.setFrom("noreply@gmail.com");
+            helper.setFrom("damian.zxc@gmail.com");
             helper.setSubject(subject);
             helper.setText(content, true);
-
+            mail.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            mail.setSubject(subject);
+            mail.setText(content);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
         mailSender.send(mail);
-
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setTo(to);
-//        message.setSubject(subject);
-//        message.setText(context);
-//        mailSender.send(message);
-
     }
 }
